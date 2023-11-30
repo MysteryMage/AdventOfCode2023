@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+source .env
+
+DAY=`printf "%02d\n" $1`
+DAY_PATH="./src/bin/$DAY.rs"
+cp ./day_template.rs $DAY_PATH
+sed -i "s/day_test/day$DAY\_test/g" $DAY_PATH
+sed -i "s/day_input/$DAY/g" $DAY_PATH
+
+curl --cookie "session=$AOC_COOKIE" https://adventofcode.com/2023/day/$1/input > ./data/input/$DAY.txt
+touch ./data/sample/$DAY.txt
