@@ -1,8 +1,8 @@
-fn solve_part_1(input: &str) -> i32 {
+fn solve_part_1(input: &str) -> u64 {
     todo!();
 }
 
-fn solve_part_2(input: &str) -> i32 {
+fn solve_part_2(input: &str) -> u64 {
     todo!();
 }
 

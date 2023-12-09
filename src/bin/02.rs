@@ -5,13 +5,13 @@ struct ParsingTurnError;
 
 #[derive(Debug)]
 struct Turn {
-    red: u32,
-    green: u32,
-    blue: u32,
+    red: u64,
+    green: u64,
+    blue: u64,
 }
 
 impl Turn {
-    fn new(red: u32, green: u32, blue: u32) -> Self {
+    fn new(red: u64, green: u64, blue: u64) -> Self {
         Self { red, green, blue }
     }
 }
@@ -28,7 +28,7 @@ impl FromStr for Turn {
             let amount = it
                 .next()
                 .expect("Should be the amount of colored cube")
-                .parse::<u32>()
+                .parse::<u64>()
                 .expect("Should be the number");
 
             match it.next().expect("Should be a color") {
@@ -43,8 +43,8 @@ impl FromStr for Turn {
     }
 }
 
-fn solve_part_1(input: &str) -> u32 {
-    let mut sum: u32 = 0;
+fn solve_part_1(input: &str) -> u64 {
+    let mut sum: u64 = 0;
 
     for (i, line) in input.lines().enumerate() {
         let result = line
@@ -57,15 +57,15 @@ fn solve_part_1(input: &str) -> u32 {
 
         if result.is_none() {
             sum +=
-                u32::try_from(i).expect("Number should not be larger than 32 bit unsigned int") + 1;
+                u64::try_from(i).expect("Number should not be larger than 32 bit unsigned int") + 1;
         }
     }
 
     sum
 }
 
-fn solve_part_2(input: &str) -> u32 {
-    let mut sum: u32 = 0;
+fn solve_part_2(input: &str) -> u64 {
+    let mut sum: u64 = 0;
 
     for line in input.lines() {
         let mut max_amount = (0, 0, 0);

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn solve_part_1(input: &str) -> i32 {
+fn solve_part_1(input: &str) -> u64 {
     input
         .lines()
         .map(|line| {
@@ -11,9 +11,9 @@ fn solve_part_1(input: &str) -> i32 {
             let mut result = String::new();
             result.push(numbers.chars().next().unwrap());
             result.push(numbers.chars().last().unwrap());
-            result.parse::<i32>().unwrap()
+            result.parse::<u64>().unwrap()
         })
-        .sum::<i32>()
+        .sum::<u64>()
 }
 
 fn word_to_num(line: &str, num_map: &HashMap<&str, char>) -> String {
@@ -40,7 +40,7 @@ fn word_to_num(line: &str, num_map: &HashMap<&str, char>) -> String {
     result
 }
 
-fn solve_part_2(input: &str) -> i32 {
+fn solve_part_2(input: &str) -> u64 {
     let num_map: HashMap<&str, char> = HashMap::from([
         ("one", '1'),
         ("two", '2'),
@@ -60,9 +60,9 @@ fn solve_part_2(input: &str) -> i32 {
             let mut result = String::new();
             result.push(numbers.chars().next().unwrap());
             result.push(numbers.chars().last().unwrap());
-            result.parse::<i32>().unwrap()
+            result.parse::<u64>().unwrap()
         })
-        .sum::<i32>()
+        .sum::<u64>()
 }
 
 fn main() {
