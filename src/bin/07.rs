@@ -127,8 +127,8 @@ where
     T: Copy,
 {
     match max_count {
-        5 => return HandType::FiveOfKind(actual_hand),
-        4 => return HandType::FourOfKind(actual_hand),
+        5 => HandType::FiveOfKind(actual_hand),
+        4 => HandType::FourOfKind(actual_hand),
         3 => {
             for c in &hand {
                 if hand.iter().filter(|e| *e == c).count() == 2 {
@@ -136,7 +136,7 @@ where
                 }
             }
 
-            return HandType::ThreeOfKind(actual_hand);
+            HandType::ThreeOfKind(actual_hand)
         }
         2 => {
             let mut prev_two_count: Option<T> = None;
@@ -151,9 +151,9 @@ where
                 }
             }
 
-            return HandType::OnePair(actual_hand);
+            HandType::OnePair(actual_hand)
         }
-        _ => return HandType::HighCard(actual_hand),
+        _ => HandType::HighCard(actual_hand),
     }
 }
 
@@ -170,7 +170,7 @@ impl FromStr for HandType<Card> {
         Ok(from_cards(
             *get_card_count(hand).values().max().unwrap(),
             hand,
-            hand.clone(),
+            hand,
         ))
     }
 }
@@ -185,12 +185,12 @@ impl FromStr for HandType<CardWithJoker> {
             hand[i] = CardWithJoker::from_char(c);
         }
 
-        let hand_with_joker = hand.clone();
+        let hand_with_joker = hand;
 
         let counts = get_card_count(hand);
         let mut max_count = *counts.values().max().unwrap();
 
-        if let Some(_) = counts.get(&CardWithJoker::Joker) {
+        if counts.get(&CardWithJoker::Joker).is_some() {
             let mut counts_vec: Vec<(&CardWithJoker, &u64)> = counts.iter().collect();
             counts_vec.sort_by(|a, b| a.1.cmp(b.1).then(a.0.cmp(b.0)));
 
